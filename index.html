@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RJ Young | Personal Website</title>
+    <meta
+      name="description"
+      content="A modern personal website for RJ Young with a polished, responsive UI."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <div class="bg-orb bg-orb-one" aria-hidden="true"></div>
+    <div class="bg-orb bg-orb-two" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="shell nav-shell">
+        <a class="brand" href="#home" aria-label="RJ Young home">
+          <span class="brand-mark">RJ</span>
+          <span class="brand-text">RJ Young</span>
+        </a>
+
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+
+        <div class="header-actions">
+          <button class="language-toggle" type="button" aria-pressed="false" data-language-toggle>
+            中文
+          </button>
+
+          <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+            <a href="#about" data-i18n="nav-about">About</a>
+            <a href="#work" data-i18n="nav-work">Work</a>
+            <a href="#process" data-i18n="nav-process">Process</a>
+            <a href="#contact" data-i18n="nav-contact">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="home">
+      <section class="hero section">
+        <div class="shell hero-grid">
+          <div class="hero-copy reveal">
+            <p class="eyebrow" data-i18n="hero-eyebrow">Personal website</p>
+            <h1>RJ Young</h1>
+            <p class="hero-lead" data-i18n="hero-lead">
+              I build thoughtful digital experiences with clean visuals, sharp detail, and a calm, modern feel.
+            </p>
+            <p class="hero-body" data-i18n="hero-body">
+              This site is designed as a flexible personal home base — a place to introduce yourself, highlight what
+              you do, and make it easy for people to connect with you.
+            </p>
+
+            <div class="hero-actions">
+              <a class="button button-primary" href="#work" data-i18n="hero-primary-cta">Explore the site</a>
+              <a class="button button-secondary" href="#contact" data-i18n="hero-secondary-cta">Get in touch</a>
+            </div>
+
+            <div class="hero-tags" aria-label="Core strengths" data-i18n-aria="hero-tags-label">
+              <span data-i18n="hero-tag-1">Modern UI</span>
+              <span data-i18n="hero-tag-2">Responsive design</span>
+              <span data-i18n="hero-tag-3">Human-centered</span>
+            </div>
+          </div>
+
+          <aside class="hero-panel reveal" aria-label="Profile summary">
+            <div class="panel-card panel-card-main">
+              <p class="panel-label" data-i18n="panel-label">Focus</p>
+              <h2 data-i18n="panel-title">Elegant, useful, memorable.</h2>
+              <p data-i18n="panel-body">
+                A strong personal site should feel like your best first impression: clear, confident, and easy to
+                navigate on every device.
+              </p>
+            </div>
+
+            <div class="panel-grid">
+              <article class="panel-card">
+                <span class="panel-icon">01</span>
+                <h3 data-i18n="panel-card-1-title">Design</h3>
+                <p data-i18n="panel-card-1-body">Minimal, premium, and polished — with deliberate spacing and strong hierarchy.</p>
+              </article>
+              <article class="panel-card">
+                <span class="panel-icon">02</span>
+                <h3 data-i18n="panel-card-2-title">Clarity</h3>
+                <p data-i18n="panel-card-2-body">Direct language and a clean layout help visitors understand who you are fast.</p>
+              </article>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="about" class="section section-alt">
+        <div class="shell split-layout reveal">
+          <div>
+            <p class="section-kicker" data-i18n="about-kicker">About</p>
+            <h2 data-i18n="about-title">A personal space that feels intentional.</h2>
+          </div>
+          <div class="content-card">
+            <p data-i18n="about-body-1">
+              I designed this layout to work well as a modern personal site for RJ Young. It balances a confident
+              introduction with sections that can easily be adapted for your actual background, skills, projects, and
+              links.
+            </p>
+            <p data-i18n="about-body-2">
+              The result is a sleek single-page experience with rich contrast, soft motion, and an editorial feel that
+              still stays highly readable.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" class="section">
+        <div class="shell">
+          <div class="section-heading reveal">
+            <p class="section-kicker" data-i18n="work-kicker">What I value</p>
+            <h2 data-i18n="work-title">Principles that shape the experience.</h2>
+          </div>
+
+          <div class="card-grid three-up">
+            <article class="feature-card reveal">
+              <div class="feature-index">01</div>
+              <h3 data-i18n="work-card-1-title">Clear storytelling</h3>
+              <p data-i18n="work-card-1-body">
+                A strong website tells visitors who you are and what matters to you without making them work for it.
+              </p>
+            </article>
+            <article class="feature-card reveal">
+              <div class="feature-index">02</div>
+              <h3 data-i18n="work-card-2-title">Responsive polish</h3>
+              <p data-i18n="work-card-2-body">
+                The layout adapts gracefully from desktop to mobile, keeping the structure elegant and usable.
+              </p>
+            </article>
+            <article class="feature-card reveal">
+              <div class="feature-index">03</div>
+              <h3 data-i18n="work-card-3-title">Subtle motion</h3>
+              <p data-i18n="work-card-3-body">
+                Light transitions and hover states add energy while keeping the interface calm and professional.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="process" class="section section-alt">
+        <div class="shell split-layout reveal">
+          <div>
+            <p class="section-kicker" data-i18n="process-kicker">Process</p>
+            <h2 data-i18n="process-title">Simple structure, refined execution.</h2>
+          </div>
+
+          <ol class="timeline content-card">
+            <li>
+              <span>01</span>
+              <div>
+                <h3 data-i18n="process-step-1-title">Introduce yourself</h3>
+                <p data-i18n="process-step-1-body">Open with a clear statement that tells people who you are and what you bring.</p>
+              </div>
+            </li>
+            <li>
+              <span>02</span>
+              <div>
+                <h3 data-i18n="process-step-2-title">Show your strengths</h3>
+                <p data-i18n="process-step-2-body">Use concise sections to highlight your skills, approach, and favorite kinds of work.</p>
+              </div>
+            </li>
+            <li>
+              <span>03</span>
+              <div>
+                <h3 data-i18n="process-step-3-title">Invite contact</h3>
+                <p data-i18n="process-step-3-body">Make it easy for people to reach out, collaborate, or learn more about you.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="shell contact-card reveal">
+          <div>
+            <p class="section-kicker" data-i18n="contact-kicker">Contact</p>
+            <h2 data-i18n="contact-title">Ready for the next conversation.</h2>
+            <p data-i18n="contact-body">
+              Replace the placeholder contact details below with your real email, links, and availability when you’re
+              ready.
+            </p>
+          </div>
+
+          <div class="contact-details">
+            <div>
+              <span data-i18n="contact-email-label">Email</span>
+              <strong>hello@rjyoung.com</strong>
+            </div>
+            <div>
+              <span data-i18n="contact-location-label">Location</span>
+              <strong data-i18n="contact-location-value">Your city</strong>
+            </div>
+            <div>
+              <span data-i18n="contact-availability-label">Availability</span>
+              <strong data-i18n="contact-availability-value">Open to opportunities</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-shell">
+        <p>© <span id="year"></span> RJ Young</p>
+        <a href="#home" data-i18n="footer-link">Back to top</a>
+      </div>
+    </footer>
+  </body>
+</html>
