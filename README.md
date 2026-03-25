@@ -1,25 +1,45 @@
-# RJ Young Personal Website
+# Yanghe Portfolio
 
-A modern personal website deployed with GitHub Pages.
+极简个人作品集网站，使用 **React + Tailwind CSS + Vite**。
 
-## Files
+## 初始化命令
 
-- `index.html` — main landing page
-- `styles.css` — visual design and responsive layout
-- `script.js` — navigation, language toggle, and scroll reveal behavior
-- `CNAME` — custom domain binding for GitHub Pages
-- `.nojekyll` — disables Jekyll processing on GitHub Pages
+```bash
+npm create vite@latest yanghe-portfolio -- --template react
+cd yanghe-portfolio
+npm install
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
 
-## Deployment notes
+## 运行命令
 
-If the custom domain does not open immediately, check the following:
+```bash
+npm run dev
+```
 
-1. **GitHub Pages is enabled** for this repository.
-2. **Custom domain** in repository settings is set to `yanghe.moodex.cc`.
-3. **DNS records** at the registrar point `yanghe.moodex.cc` to GitHub Pages.
-   - For a subdomain, use a **CNAME** record pointing to `yanghe1941.github.io`.
-4. Wait for DNS and HTTPS provisioning to finish. This can take a few minutes to a few hours.
+## 构建命令
 
-## Local preview
+```bash
+npm run build
+```
 
-Open `index.html` directly in a browser or serve the folder with a static server.
+## 目录说明
+
+- `index.html`：Vite 入口页
+- `src/main.jsx`：React 挂载入口
+- `src/App.jsx`：核心页面组件
+- `src/index.css`：Tailwind 入口样式
+- `tailwind.config.js`：Tailwind 配置
+- `postcss.config.js`：PostCSS 配置
+
+## 部署提示
+
+如果你要继续使用 `yanghe.moodex.cc`：
+
+1. 在 GitHub 仓库的 **Settings → Pages** 中启用 Pages。
+2. 在 **Custom domain** 中填写 `yanghe.moodex.cc`。
+3. 在域名服务商处添加一条 **CNAME**：
+   - **Host**：`yanghe`
+   - **Target**：`yanghe1941.github.io`
+4. 等待 DNS 传播和 HTTPS 证书签发完成。
