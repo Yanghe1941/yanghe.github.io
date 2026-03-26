@@ -1,114 +1,284 @@
+import { useEffect, useState } from 'react';
+
 const projects = [
   {
     title: 'Moodex',
-    type: 'iOS App',
-    description: '一款 AI 驱动的个人知识库与情绪追踪工具，帮助记录和分析内在状态。',
+    type: { en: 'iOS App', zh: 'iOS App' },
+    description: {
+      en: 'An AI-powered personal knowledge base and mood tracking app that helps record and analyze inner states.',
+      zh: '一款 AI 驱动的个人知识库与情绪追踪工具，帮助记录和分析内在状态。',
+    },
     href: 'https://moodex.cc',
   },
   {
     title: 'MyVault',
-    type: 'iOS App',
-    description: '真实世界资产RWA管理应用，将数字化的秩序带入物理世界。',
+    type: { en: 'iOS App', zh: 'iOS App' },
+    description: {
+      en: 'A real-world asset (RWA) management app that brings digital order into the physical world.',
+      zh: '真实世界资产RWA管理应用，将数字化的秩序带入物理世界。',
+    },
     href: 'https://myvault.moodex.cc',
   },
   {
     title: 'CircleCast',
-    type: '播客',
-    description: '一档探索个人的播客平台，以及衍生的个人故事引导录制应用。',
+    type: { en: 'Podcast', zh: '播客' },
+    description: {
+      en: 'A podcast platform exploring personal stories, plus a companion app for guided story recording.',
+      zh: '一档探索个人的播客平台，以及衍生的个人故事引导录制应用。',
+    },
     href: 'https://podcasts.apple.com/cn/podcast/circlecast/id1859906660',
   },
   {
     title: 'Adaptive Eta',
-    type: 'AI Agent 技能',
-    description: '为 OpenClaw 智能体开发的自定义技能，提升 AI 执行特定任务的效率。',
+    type: { en: 'AI Agent Skill', zh: 'AI Agent 技能' },
+    description: {
+      en: 'A custom skill built for the OpenClaw agent to improve task-specific execution efficiency.',
+      zh: '为 OpenClaw 智能体开发的自定义技能，提升 AI 执行特定任务的效率。',
+    },
     href: 'https://clawhub.ai/yanghe1941/adaptive-eta',
   },
 ];
 
-const navItems = [
-  { href: '#about', label: '关于' },
-  { href: '#projects', label: '项目' },
-  { href: '#experience', label: '个人经历' },
-  { href: '#contact', label: '联系方式' },
-];
-
 const experiences = [
   {
-    date: '2023 至今',
-    company: 'Personal Projects',
-    position: '独立开发者 & AI 探索者',
-    content: '致力于将技术融入生活。开发了 Moodex、MyVault 等多款 iOS 应用。',
+    date: { en: '2023 - Present', zh: '2023 至今' },
+    company: { en: 'Personal Projects', zh: 'Personal Projects' },
+    position: { en: 'Independent Developer & AI Explorer', zh: '独立开发者 & AI 探索者' },
+    content: {
+      en: 'Dedicated to bringing technology into everyday life. Built iOS apps including Moodex and MyVault.',
+      zh: '致力于将技术融入生活。开发了 Moodex、MyVault 等多款 iOS 应用。',
+    },
   },
   {
-    date: '2023 - 至今',
-    company: 'Damus Lab',
-    position: '联合创始人',
-    content: '负责东南亚出海、MCN 相关工作。',
+    date: { en: '2023 - Present', zh: '2023 - 至今' },
+    company: { en: 'Damus Lab', zh: 'Damus Lab' },
+    position: { en: 'Co-founder', zh: '联合创始人' },
+    content: {
+      en: 'Focused on Southeast Asia outbound growth and MCN operations.',
+      zh: '负责东南亚出海、MCN 相关工作。',
+    },
   },
   {
-    date: '2021 - 2022',
-    company: 'WOOK',
+    date: { en: '2021 - 2022', zh: '2021 - 2022' },
+    company: { en: 'WOOK', zh: 'WOOK' },
     companyHref: 'https://home.wook.cn/id',
-    position: '品牌运营经理',
-    content: '参与品牌增长与运营体系建设。',
+    position: { en: 'Brand Operations Manager', zh: '品牌运营经理' },
+    content: {
+      en: 'Contributed to brand growth and operating system improvements.',
+      zh: '参与品牌增长与运营体系建设。',
+    },
   },
   {
-    date: '2020 - 2021',
-    company: 'WeGene 微基因',
+    date: { en: '2020 - 2021', zh: '2020 - 2021' },
+    company: { en: 'WeGene', zh: 'WeGene 微基因' },
     companyHref: 'https://www.wegene.com/en/',
-    position: '运营经理',
-    content: '负责消费级基因检测产品的电商运营与用户增长。',
+    position: { en: 'Operations Manager', zh: '运营经理' },
+    content: {
+      en: 'Responsible for e-commerce operations and user growth for consumer genetic testing products.',
+      zh: '负责消费级基因检测产品的电商运营与用户增长。',
+    },
   },
   {
-    date: '2019 - 2020',
-    company: 'MOTI 魔笛',
+    date: { en: '2019 - 2020', zh: '2019 - 2020' },
+    company: { en: 'MOTI', zh: 'MOTI 魔笛' },
     companyHref: 'https://motiplanet.com/',
-    position: '用户增长运营经理',
-    content: '参与用户增长与转化效率优化。',
+    position: { en: 'User Growth Operations Manager', zh: '用户增长运营经理' },
+    content: {
+      en: 'Focused on growth and conversion optimization.',
+      zh: '参与用户增长与转化效率优化。',
+    },
   },
   {
-    date: '2017 - 2018',
-    company: '大象公会',
+    date: { en: '2017 - 2018', zh: '2017 - 2018' },
+    company: { en: 'Elephant Club', zh: '大象公会' },
     companyHref: 'https://zh.wikipedia.org/zh-cn/%E5%A4%A7%E8%B1%A1%E5%85%AC%E4%BC%9A',
-    position: '商务经理',
-    content: '参与“故事FM”“回形针”等内容项目合作。',
+    position: { en: 'Business Manager', zh: '商务经理' },
+    content: {
+      en: 'Worked on content project partnerships for StoryFM and Paperclip.',
+      zh: '参与“故事FM”“回形针”等内容项目合作。',
+    },
   },
   {
-    date: '2013 - 2017',
-    company: '河北工业大学',
-    position: '—',
-    content: '—',
+    date: { en: '2013 - 2017', zh: '2013 - 2017' },
+    company: { en: 'Hebei University of Technology', zh: '河北工业大学' },
+    position: { en: '—', zh: '—' },
+    content: {
+      en: 'Built a solid long-term foundation.',
+      zh: '打下长期而扎实的基础。',
+    },
   },
 ];
 
+const navItems = [
+  { href: '#about', key: 'about' },
+  { href: '#projects', key: 'projects' },
+  { href: '#experience', key: 'experience' },
+  { href: '#contact', key: 'contact' },
+];
+
+const siteCopy = {
+  en: {
+    title: 'Yanghe | Portfolio',
+    description: 'Yanghe\'s minimalist portfolio site, built with React, Tailwind CSS, and Vite.',
+    nav: {
+      about: 'About',
+      projects: 'Projects',
+      experience: 'Experience',
+      contact: 'Contact',
+    },
+    blog: 'Blog',
+    heroEyebrow: 'Portfolio',
+    heroLead: 'Yanghe, independent developer and US stock trader.',
+    heroBody: 'Sharing insights on US stocks, blockchain, AI, markets, and branding.',
+    heroPrimary: 'View projects',
+    heroSecondary: 'Contact',
+    focusLabel: 'Focus',
+    focusTitle: 'Product / AI / Trading',
+    focusPoints: ['Focused on information hierarchy and reading efficiency', 'Exploring the intersection of product and lifestyle.'],
+    projectsKicker: 'Projects',
+    projectsTitle: 'Selected work',
+    experienceKicker: 'Experience',
+    experienceTitle: 'Career timeline',
+    table: {
+      date: 'Date',
+      company: 'Company',
+      position: 'Role',
+      content: 'Details',
+    },
+    footer: '© {year} Yanghe. All rights reserved.',
+    languageToggle: '中文',
+    languageToggleLabel: 'Switch to Chinese',
+  },
+  zh: {
+    title: '杨鹤 | Portfolio',
+    description: '杨鹤的极简个人作品集网站，使用 React、Tailwind CSS 与 Vite 构建。',
+    nav: {
+      about: '关于',
+      projects: '项目',
+      experience: '经历',
+      contact: '联系方式',
+    },
+    blog: '博客',
+    heroEyebrow: '作品集',
+    heroLead: '杨鹤，个人开发者、美股交易员。',
+    heroBody: '分享关于美股、区块链、AI、市场、品牌相关信息。',
+    heroPrimary: '查看项目',
+    heroSecondary: '联系方式',
+    focusLabel: '重点',
+    focusTitle: 'Product / AI / Trading',
+    focusPoints: ['注重信息层级与阅读效率', '关注产品与生活方式的结合点。'],
+    projectsKicker: '项目',
+    projectsTitle: '核心项目',
+    experienceKicker: '经历',
+    experienceTitle: '经历',
+    table: {
+      date: '日期',
+      company: '公司',
+      position: '职位',
+      content: '内容',
+    },
+    footer: '© {year} Yanghe. All rights reserved.',
+    languageToggle: 'EN',
+    languageToggleLabel: '切换到英文',
+  },
+};
+
+const getInitialLanguage = () => {
+  if (typeof window === 'undefined') {
+    return 'en';
+  }
+
+  try {
+    const savedLanguage = window.localStorage.getItem('site-language');
+    if (savedLanguage === 'en' || savedLanguage === 'zh') {
+      return savedLanguage;
+    }
+  } catch {
+    // Ignore storage access failures.
+  }
+
+  const browserLanguage = window.navigator.languages?.[0] ?? window.navigator.language ?? 'en';
+  return browserLanguage.toLowerCase().startsWith('zh') ? 'zh' : 'en';
+};
+
+const translate = (value, language) => {
+  if (value && typeof value === 'object' && !Array.isArray(value)) {
+    return value[language] ?? value.en ?? value.zh ?? '';
+  }
+
+  return value ?? '';
+};
+
 function App() {
+  const [language, setLanguage] = useState(getInitialLanguage());
+  const copy = siteCopy[language] ?? siteCopy.en;
   const year = new Date().getFullYear();
+
+  useEffect(() => {
+    const title = copy.title;
+    const description = copy.description;
+
+    document.documentElement.lang = language === 'zh' ? 'zh-Hans' : 'en';
+    document.title = title;
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+
+    if (metaDescription) {
+      metaDescription.setAttribute('content', description);
+    }
+
+    if (ogDescription) {
+      ogDescription.setAttribute('content', description);
+    }
+
+    try {
+      window.localStorage.setItem('site-language', language);
+    } catch {
+      // Ignore storage write failures.
+    }
+  }, [language, copy.description, copy.title]);
+
+  const toggleLanguage = () => {
+    setLanguage((current) => (current === 'en' ? 'zh' : 'en'));
+  };
 
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-900 antialiased">
       <header className="sticky top-0 z-50 border-b border-zinc-200/80 bg-zinc-50/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
           <a href="#about" className="text-sm font-semibold tracking-[0.2em] text-zinc-950 uppercase">
             Yanghe
           </a>
 
-          <nav aria-label="Primary" className="flex items-center gap-2 text-[13px] text-zinc-600 sm:gap-3">
+          <nav aria-label="Primary" className="flex flex-wrap items-center gap-2 text-[13px] text-zinc-600 sm:justify-end sm:gap-3">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 className="rounded-full px-2 py-1.5 transition-colors duration-200 hover:bg-zinc-100 hover:text-zinc-950"
               >
-                {item.label}
+                {copy.nav[item.key]}
               </a>
             ))}
+
+            <button
+              type="button"
+              onClick={toggleLanguage}
+              aria-label={copy.languageToggleLabel}
+              aria-pressed={language === 'zh'}
+              className="inline-flex items-center rounded-full border border-zinc-200 bg-white px-3 py-2 text-[13px] font-medium text-zinc-700 transition-colors duration-200 hover:border-zinc-300 hover:text-zinc-950"
+            >
+              {copy.languageToggle}
+            </button>
+
             <a
               href="https://quaily.com/yanghe"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-3 py-2 text-[13px] font-medium text-zinc-700 transition-colors duration-200 hover:border-zinc-300 hover:text-zinc-950"
             >
-              <span>博客</span>
+              <span>{copy.blog}</span>
               <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-none stroke-current stroke-[1.8]">
                 <path d="M14 3h7v7" />
                 <path d="M21 3 10 14" />
@@ -122,15 +292,15 @@ function App() {
       <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <section
           id="about"
-          className="grid gap-10 py-16 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:py-24"
+          className="grid gap-8 py-12 sm:py-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:py-24"
         >
-          <div className="space-y-6">
+          <div className="space-y-5">
             <p className="text-sm font-medium uppercase tracking-[0.24em] text-accent">
-              Portfolio
+              {copy.heroEyebrow}
             </p>
-            <div className="max-w-2xl space-y-2 text-base leading-7 text-zinc-600">
-              <p>杨鹤，个人开发者、美股交易员。</p>
-              <p>分享关于美股、区块链、AI、市场、品牌相关信息。</p>
+            <div className="max-w-2xl space-y-2 text-[15px] leading-7 text-zinc-600 sm:text-base">
+              <p>{copy.heroLead}</p>
+              <p>{copy.heroBody}</p>
             </div>
 
             <div className="flex flex-wrap gap-3">
@@ -138,27 +308,30 @@ function App() {
                 href="#projects"
                 className="inline-flex items-center justify-center rounded-full bg-zinc-950 px-5 py-3 text-sm font-medium text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-zinc-800"
               >
-                查看项目
+                {copy.heroPrimary}
               </a>
               <a
                 href="#contact"
                 className="inline-flex items-center justify-center rounded-full border border-zinc-300 bg-white px-5 py-3 text-sm font-medium text-zinc-900 transition-transform duration-200 hover:-translate-y-0.5 hover:border-zinc-400"
               >
-                联系方式
+                {copy.heroSecondary}
               </a>
             </div>
           </div>
 
-          <aside className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-soft">
+          <aside className="rounded-3xl border border-zinc-200 bg-white p-5 shadow-soft sm:p-6">
             <div className="space-y-5">
               <div>
-                <p className="text-xs font-medium uppercase tracking-[0.24em] text-zinc-400">Focus</p>
-                <p className="mt-2 text-lg font-semibold text-zinc-950">Product / AI / Trading</p>
+                <p className="text-xs font-medium uppercase tracking-[0.24em] text-zinc-400">{copy.focusLabel}</p>
+                <p className="mt-2 text-lg font-semibold text-zinc-950">{copy.focusTitle}</p>
               </div>
 
               <div className="grid gap-3 text-sm text-zinc-600">
-                <div className="rounded-2xl bg-zinc-50 px-4 py-3">注重信息层级与阅读效率</div>
-                <div className="rounded-2xl bg-zinc-50 px-4 py-3">关注产品与生活方式的结合点</div>
+                {copy.focusPoints.map((point) => (
+                  <div key={point} className="rounded-2xl bg-zinc-50 px-4 py-3">
+                    {point}
+                  </div>
+                ))}
               </div>
             </div>
           </aside>
@@ -167,75 +340,73 @@ function App() {
         <section id="projects" className="py-12 sm:py-16">
           <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-sm font-medium uppercase tracking-[0.24em] text-accent">Projects</p>
+              <p className="text-sm font-medium uppercase tracking-[0.24em] text-accent">{copy.projectsKicker}</p>
               <h2 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-950 sm:text-3xl">
-                核心项目
+                {copy.projectsTitle}
               </h2>
             </div>
           </div>
 
-          <div className="overflow-x-auto pb-2">
-            <div className="grid min-w-[1120px] grid-cols-4 gap-4 sm:gap-5">
-              {projects.map((project) => (
-                <a
-                  key={project.title}
-                  href={project.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`${project.title} ${project.type}`}
-                  className="group block h-full rounded-3xl border border-zinc-200 bg-white p-5 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-zinc-300 hover:shadow-md"
-                >
-                  <div className="mb-5 flex items-center justify-between gap-4">
-                    <span className="inline-flex rounded-full bg-zinc-100 px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-zinc-600">
-                      {project.type}
-                    </span>
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-zinc-200 text-zinc-400 transition-colors duration-200 group-hover:border-zinc-300 group-hover:text-zinc-950">
-                      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5 fill-none stroke-current stroke-[1.8]">
-                        <path d="M7 17 17 7" />
-                        <path d="M9 7h8v8" />
-                      </svg>
-                    </span>
-                  </div>
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4 sm:gap-5">
+            {projects.map((project) => (
+              <a
+                key={project.title}
+                href={project.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`${project.title} ${translate(project.type, language)}`}
+                className="group block h-full rounded-3xl border border-zinc-200 bg-white p-5 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-zinc-300 hover:shadow-md"
+              >
+                <div className="mb-5 flex items-center justify-between gap-4">
+                  <span className="inline-flex rounded-full bg-zinc-100 px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-zinc-600">
+                    {translate(project.type, language)}
+                  </span>
+                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-zinc-200 text-zinc-400 transition-colors duration-200 group-hover:border-zinc-300 group-hover:text-zinc-950">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5 fill-none stroke-current stroke-[1.8]">
+                      <path d="M7 17 17 7" />
+                      <path d="M9 7h8v8" />
+                    </svg>
+                  </span>
+                </div>
 
-                  <h3 className="text-[17px] font-semibold tracking-tight text-zinc-950">{project.title}</h3>
-                  <p className="mt-2.5 text-sm leading-6 text-zinc-600">{project.description}</p>
-                </a>
-              ))}
-            </div>
+                <h3 className="text-[17px] font-semibold tracking-tight text-zinc-950">{project.title}</h3>
+                <p className="mt-2.5 text-sm leading-6 text-zinc-600">{translate(project.description, language)}</p>
+              </a>
+            ))}
           </div>
         </section>
 
         <section id="experience" className="py-12 sm:py-16">
           <div className="mb-8">
-            <p className="text-sm font-medium uppercase tracking-[0.24em] text-accent">Experience</p>
+            <p className="text-sm font-medium uppercase tracking-[0.24em] text-accent">{copy.experienceKicker}</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-950 sm:text-3xl">
-              经历
+              {copy.experienceTitle}
             </h2>
           </div>
 
-          <div className="overflow-x-auto rounded-2xl border border-zinc-200 bg-white shadow-soft">
+          <div className="overflow-x-auto rounded-2xl border border-zinc-200 bg-white shadow-soft [-webkit-overflow-scrolling:touch]">
             <table className="min-w-[760px] w-full border-separate border-spacing-0 text-left">
               <thead className="bg-zinc-50">
                 <tr>
                   <th className="border-b border-zinc-200 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-zinc-500">
-                    日期
+                    {copy.table.date}
                   </th>
                   <th className="border-b border-zinc-200 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-zinc-500">
-                    公司
+                    {copy.table.company}
                   </th>
                   <th className="border-b border-zinc-200 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-zinc-500">
-                    职位
+                    {copy.table.position}
                   </th>
                   <th className="border-b border-zinc-200 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-zinc-500">
-                    内容
+                    {copy.table.content}
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {experiences.map((item, index) => (
-                  <tr key={`${item.date}-${item.company}`} className={index % 2 === 0 ? 'bg-white' : 'bg-zinc-50/60'}>
+                  <tr key={`${translate(item.date, language)}-${translate(item.company, language)}`} className={index % 2 === 0 ? 'bg-white' : 'bg-zinc-50/60'}>
                     <td className="border-b border-zinc-100 px-4 py-3.5 align-top text-sm text-zinc-600">
-                      {item.date}
+                      {translate(item.date, language)}
                     </td>
                     <td className="border-b border-zinc-100 px-4 py-3.5 align-top text-sm font-medium text-zinc-950">
                       {item.companyHref ? (
@@ -245,17 +416,17 @@ function App() {
                           rel="noreferrer"
                           className="underline decoration-zinc-300 decoration-1 underline-offset-4 transition-colors duration-200 hover:decoration-zinc-500"
                         >
-                          {item.company}
+                          {translate(item.company, language)}
                         </a>
                       ) : (
-                        item.company
+                        translate(item.company, language)
                       )}
                     </td>
                     <td className="border-b border-zinc-100 px-4 py-3.5 align-top text-sm text-zinc-600">
-                      {item.position}
+                      {translate(item.position, language)}
                     </td>
                     <td className="border-b border-zinc-100 px-4 py-3.5 align-top text-sm leading-6 text-zinc-600">
-                      {item.content}
+                      {translate(item.content, language)}
                     </td>
                   </tr>
                 ))}
@@ -267,7 +438,7 @@ function App() {
 
       <footer id="contact" className="border-t border-zinc-200 bg-white">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-          <p className="text-sm text-zinc-500">© {year} Yanghe. All rights reserved.</p>
+          <p className="text-sm text-zinc-500">{copy.footer.replace('{year}', String(year))}</p>
 
           <div className="flex flex-wrap items-center gap-3">
             <a
