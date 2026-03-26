@@ -102,9 +102,15 @@ function App() {
               href="https://quaily.com/yanghe"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center rounded-full border border-zinc-300 bg-white px-3 py-1.5 text-sm font-medium text-zinc-900 transition-colors duration-200 hover:border-zinc-400 hover:text-zinc-950"
+              aria-label="博客"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-600 transition-colors duration-200 hover:border-zinc-300 hover:text-zinc-950"
             >
-              博客
+              <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 fill-none stroke-current stroke-[1.8]">
+                <path d="M14 3h7v7" />
+                <path d="M21 3 10 14" />
+                <path d="M21 14v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4" />
+              </svg>
+              <span className="sr-only">博客</span>
             </a>
           </nav>
         </div>
@@ -167,24 +173,28 @@ function App() {
 
           <div className="overflow-x-auto pb-2">
             <div className="grid min-w-[1120px] grid-cols-4 gap-4 sm:gap-5">
-              {projects.map((project, index) => (
+              {projects.map((project) => (
                 <a
                   key={project.title}
                   href={project.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="group block h-full rounded-3xl border border-zinc-200 bg-white p-6 shadow-soft transition-transform duration-200 hover:-translate-y-0.5 hover:border-zinc-300"
+                  aria-label={`${project.title} ${project.type}`}
+                  className="group block h-full rounded-3xl border border-zinc-200 bg-white p-6 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-zinc-300 hover:shadow-md"
                 >
                   <div className="mb-6 flex items-center justify-between gap-4">
                     <span className="inline-flex rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-600">
                       {project.type}
                     </span>
-                    <span className="text-xs font-medium tracking-[0.2em] text-zinc-400">
-                      0{index + 1}
+                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-zinc-200 text-zinc-400 transition-colors duration-200 group-hover:border-zinc-300 group-hover:text-zinc-950">
+                      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-none stroke-current stroke-[1.8]">
+                        <path d="M7 17 17 7" />
+                        <path d="M9 7h8v8" />
+                      </svg>
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-semibold text-zinc-950">{project.title}</h3>
+                  <h3 className="text-lg font-semibold text-zinc-950">{project.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-zinc-600">{project.description}</p>
                 </a>
               ))}
