@@ -3,26 +3,25 @@ const projects = [
     title: 'Moodex',
     type: 'iOS App',
     description: '一款 AI 驱动的个人知识库与情绪追踪工具，帮助记录和分析内在状态。',
+    href: 'https://moodex.cc',
   },
   {
     title: 'MyVault',
     type: 'iOS App',
-    description: '实体资产与纪念品管理应用，将数字化的秩序带入物理世界。',
+    description: '真实世界资产RWA管理应用，将数字化的秩序带入物理世界。',
+    href: 'https://myvault.moodex.cc',
   },
   {
-    title: 'MyGuard',
-    type: 'iOS App',
-    description: '个人生活状态监控与守护应用。',
-  },
-  {
-    title: 'CircleCast / CircleStory',
-    type: '产品企划',
+    title: 'CircleCast',
+    type: '播客',
     description: '一档探索个人的播客平台，以及衍生的个人故事引导录制应用。',
+    href: 'https://podcasts.apple.com/cn/podcast/circlecast/id1859906660',
   },
   {
     title: 'Adaptive Eta',
     type: 'AI Agent 技能',
     description: '为 OpenClaw 智能体开发的自定义技能，提升 AI 执行特定任务的效率。',
+    href: 'https://clawhub.ai/yanghe1941/adaptive-eta',
   },
 ];
 
@@ -166,25 +165,30 @@ function App() {
             </div>
           </div>
 
-          <div className="grid gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {projects.map((project, index) => (
-              <article
-                key={project.title}
-                className="group flex h-full flex-col rounded-3xl border border-zinc-200 bg-white p-6 shadow-soft transition-transform duration-200 hover:-translate-y-0.5 hover:border-zinc-300"
-              >
-                <div className="mb-6 flex items-center justify-between gap-4">
-                  <span className="inline-flex rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-600">
-                    {project.type}
-                  </span>
-                  <span className="text-xs font-medium tracking-[0.2em] text-zinc-400">
-                    0{index + 1}
-                  </span>
-                </div>
+          <div className="overflow-x-auto pb-2">
+            <div className="grid min-w-[1120px] grid-cols-4 gap-4 sm:gap-5">
+              {projects.map((project, index) => (
+                <a
+                  key={project.title}
+                  href={project.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group block h-full rounded-3xl border border-zinc-200 bg-white p-6 shadow-soft transition-transform duration-200 hover:-translate-y-0.5 hover:border-zinc-300"
+                >
+                  <div className="mb-6 flex items-center justify-between gap-4">
+                    <span className="inline-flex rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-600">
+                      {project.type}
+                    </span>
+                    <span className="text-xs font-medium tracking-[0.2em] text-zinc-400">
+                      0{index + 1}
+                    </span>
+                  </div>
 
-                <h3 className="text-xl font-semibold text-zinc-950">{project.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-zinc-600">{project.description}</p>
-              </article>
-            ))}
+                  <h3 className="text-xl font-semibold text-zinc-950">{project.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-zinc-600">{project.description}</p>
+                </a>
+              ))}
+            </div>
           </div>
         </section>
 
