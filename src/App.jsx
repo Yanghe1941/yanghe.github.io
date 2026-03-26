@@ -67,10 +67,10 @@ function App() {
               Portfolio
             </p>
             <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-zinc-950 sm:text-5xl lg:text-6xl">
-              你好，我是 Yanghe。致力于开发提升生活效率与体验的应用程序。
+              杨鹤，个人开发者、美股交易员。
             </h1>
             <p className="max-w-2xl text-base leading-7 text-zinc-600 sm:text-lg">
-              我偏好极简、清晰、可靠的产品体验，把注意力留给内容本身，让每个界面都尽量轻、准、稳。
+              分享关于美股、区块链、AI、市场、品牌相关信息。
             </p>
 
             <div className="flex flex-wrap gap-3">
@@ -93,12 +93,11 @@ function App() {
             <div className="space-y-5">
               <div>
                 <p className="text-xs font-medium uppercase tracking-[0.24em] text-zinc-400">Focus</p>
-                <p className="mt-2 text-lg font-semibold text-zinc-950">Product / iOS / AI / Minimal UI</p>
+                <p className="mt-2 text-lg font-semibold text-zinc-950">Product / AI / Trading</p>
               </div>
 
               <div className="grid gap-3 text-sm text-zinc-600">
                 <div className="rounded-2xl bg-zinc-50 px-4 py-3">注重信息层级与阅读效率</div>
-                <div className="rounded-2xl bg-zinc-50 px-4 py-3">偏爱稳定、克制、可维护的设计</div>
                 <div className="rounded-2xl bg-zinc-50 px-4 py-3">关注产品与生活方式的结合点</div>
               </div>
             </div>
