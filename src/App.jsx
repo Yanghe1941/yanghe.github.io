@@ -29,7 +29,53 @@ const projects = [
 const navItems = [
   { href: '#about', label: '关于' },
   { href: '#projects', label: '项目' },
+  { href: '#experience', label: '个人经历' },
   { href: '#contact', label: '联系方式' },
+];
+
+const experiences = [
+  {
+    period: '2023 至今',
+    role: '独立开发者 & AI 探索者',
+    company: 'Personal Projects',
+    detail: '致力于将技术融入生活。开发了 Moodex、MyVault 等多款 iOS 应用。',
+  },
+  {
+    period: '2023 - 至今',
+    role: '联合创始人',
+    company: 'Damus Lab',
+    detail: '负责东南亚出海、MCN 相关工作。',
+  },
+  {
+    period: '2021 - 2022',
+    role: '品牌运营经理',
+    company: 'WOOK',
+    detail: '参与品牌增长与运营体系建设。',
+  },
+  {
+    period: '2020 - 2021',
+    role: '运营经理',
+    company: 'WeGene 微基因',
+    detail: '负责消费级基因检测产品的电商运营与用户增长。',
+  },
+  {
+    period: '2019 - 2020',
+    role: '用户增长运营经理',
+    company: 'MOTI 魔笛',
+    detail: '参与用户增长与转化效率优化。',
+  },
+  {
+    period: '2017 - 2018',
+    role: '商务经理',
+    company: '大象公会',
+    detail: '参与“故事FM”“回形针”等内容项目合作。',
+  },
+  {
+    period: '2013 - 2017',
+    role: '河北工业大学',
+    company: '学习经历',
+    detail: '打下长期而扎实的基础。',
+  },
 ];
 
 function App() {
@@ -43,7 +89,7 @@ function App() {
             Yanghe
           </a>
 
-          <nav aria-label="Primary" className="flex items-center gap-4 text-sm text-zinc-600 sm:gap-6">
+          <nav aria-label="Primary" className="flex items-center gap-3 text-sm text-zinc-600 sm:gap-4">
             {navItems.map((item) => (
               <a
                 key={item.href}
@@ -53,6 +99,14 @@ function App() {
                 {item.label}
               </a>
             ))}
+            <a
+              href="https://quaily.com/yanghe"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center rounded-full border border-zinc-300 bg-white px-3 py-1.5 text-sm font-medium text-zinc-900 transition-colors duration-200 hover:border-zinc-400 hover:text-zinc-950"
+            >
+              博客
+            </a>
           </nav>
         </div>
       </header>
@@ -67,11 +121,9 @@ function App() {
               Portfolio
             </p>
             <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-zinc-950 sm:text-5xl lg:text-6xl">
-              杨鹤，个人开发者、美股交易员。
+              <span className="block">杨鹤，个人开发者、美股交易员。</span>
+              <span className="mt-4 block">分享关于美股、区块链、AI、市场、品牌相关信息。</span>
             </h1>
-            <p className="max-w-2xl text-base leading-7 text-zinc-600 sm:text-lg">
-              分享关于美股、区块链、AI、市场、品牌相关信息。
-            </p>
 
             <div className="flex flex-wrap gap-3">
               <a
@@ -112,9 +164,6 @@ function App() {
                 核心项目
               </h2>
             </div>
-            <p className="max-w-xl text-sm leading-6 text-zinc-500">
-              以下内容已直接硬编码到页面中，每张卡片都只保留最核心的信息。
-            </p>
           </div>
 
           <div className="grid gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -134,6 +183,40 @@ function App() {
 
                 <h3 className="text-xl font-semibold text-zinc-950">{project.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-zinc-600">{project.description}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="experience" className="py-12 sm:py-16">
+          <div className="mb-8">
+            <p className="text-sm font-medium uppercase tracking-[0.24em] text-accent">Experience</p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-950 sm:text-3xl">
+              个人经历
+            </h2>
+          </div>
+
+          <div className="grid gap-4">
+            {experiences.map((item) => (
+              <article
+                key={`${item.period}-${item.role}`}
+                className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-soft"
+              >
+                <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between md:gap-6">
+                  <div className="max-w-3xl space-y-2">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <h3 className="text-lg font-semibold text-zinc-950">{item.role}</h3>
+                      <span className="inline-flex rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-600">
+                        {item.company}
+                      </span>
+                    </div>
+                    <p className="text-sm leading-6 text-zinc-600">{item.detail}</p>
+                  </div>
+
+                  <p className="text-sm font-medium tracking-[0.18em] text-zinc-400 md:text-right">
+                    {item.period}
+                  </p>
+                </div>
               </article>
             ))}
           </div>
