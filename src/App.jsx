@@ -243,7 +243,7 @@ function App() {
                           href={item.companyHref}
                           target="_blank"
                           rel="noreferrer"
-                          className="text-blue-600 transition-colors duration-200 hover:text-blue-700 hover:underline"
+                          className="underline decoration-zinc-300 decoration-1 underline-offset-4 transition-colors duration-200 hover:decoration-zinc-500"
                         >
                           {item.company}
                         </a>
