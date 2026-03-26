@@ -102,10 +102,6 @@ const experiences = [
     date: { en: '2013 - 2017', zh: '2013 - 2017' },
     company: { en: 'Hebei University of Technology', zh: '河北工业大学' },
     position: { en: '—', zh: '—' },
-    content: {
-      en: 'Built a solid long-term foundation.',
-      zh: '打下长期而扎实的基础。',
-    },
   },
 ];
 
