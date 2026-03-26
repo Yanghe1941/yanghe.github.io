@@ -119,7 +119,7 @@ const navItems = [
 const siteCopy = {
   en: {
     title: 'Yanghe | Portfolio',
-    description: 'Yanghe\'s minimalist portfolio site, built with React, Tailwind CSS, and Vite.',
+    description: 'Yanghe\'s minimalist portfolio, built with React, Tailwind CSS, and Vite.',
     nav: {
       about: 'About',
       projects: 'Projects',
@@ -128,15 +128,15 @@ const siteCopy = {
     },
     blog: 'Blog',
     heroEyebrow: 'Portfolio',
-    heroLead: 'Yanghe, independent developer and US stock trader.',
-    heroBody: 'Sharing insights on US stocks, blockchain, AI, markets, and branding.',
+    heroLead: 'Yanghe, an independent developer and US stock trader.',
+    heroBody: 'Sharing thoughts on US stocks, blockchain, AI, markets, and branding.',
     heroPrimary: 'View projects',
     heroSecondary: 'Contact',
     focusLabel: 'Focus',
     focusTitle: 'Product / AI / Trading',
-    focusPoints: ['Focused on information hierarchy and reading efficiency', 'Exploring the intersection of product and lifestyle.'],
+    focusPoints: ['Designing for clarity, hierarchy, and fast reading.', 'Exploring the overlap between products and everyday life.'],
     projectsKicker: 'Projects',
-    projectsTitle: 'Selected work',
+    projectsTitle: 'Selected projects',
     experienceKicker: 'Experience',
     experienceTitle: 'Career timeline',
     table: {
@@ -161,16 +161,16 @@ const siteCopy = {
     blog: '博客',
     heroEyebrow: '作品集',
     heroLead: '杨鹤，个人开发者、美股交易员。',
-    heroBody: '分享关于美股、区块链、AI、市场、品牌相关信息。',
+    heroBody: '分享美股、区块链、AI、市场与品牌相关内容。',
     heroPrimary: '查看项目',
     heroSecondary: '联系方式',
     focusLabel: '重点',
     focusTitle: 'Product / AI / Trading',
-    focusPoints: ['注重信息层级与阅读效率', '关注产品与生活方式的结合点。'],
+    focusPoints: ['注重信息层级与阅读效率。', '关注产品与生活方式的结合点。'],
     projectsKicker: '项目',
-    projectsTitle: '核心项目',
+    projectsTitle: '精选项目',
     experienceKicker: '经历',
-    experienceTitle: '经历',
+    experienceTitle: '职业经历',
     table: {
       date: '日期',
       company: '公司',
@@ -292,13 +292,13 @@ function App() {
       <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <section
           id="about"
-          className="grid gap-8 py-12 sm:py-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:py-24"
+          className="scroll-mt-24 grid gap-8 py-12 sm:py-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:py-24"
         >
           <div className="space-y-5">
             <p className="text-sm font-medium uppercase tracking-[0.24em] text-accent">
               {copy.heroEyebrow}
             </p>
-            <div className="max-w-2xl space-y-2 text-[15px] leading-7 text-zinc-600 sm:text-base">
+            <div className="max-w-2xl space-y-2 text-[15px] leading-7 text-zinc-600 sm:text-base sm:leading-8">
               <p>{copy.heroLead}</p>
               <p>{copy.heroBody}</p>
             </div>
@@ -337,7 +337,7 @@ function App() {
           </aside>
         </section>
 
-        <section id="projects" className="py-12 sm:py-16">
+        <section id="projects" className="scroll-mt-24 py-12 sm:py-16">
           <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm font-medium uppercase tracking-[0.24em] text-accent">{copy.projectsKicker}</p>
@@ -355,9 +355,9 @@ function App() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={`${project.title} ${translate(project.type, language)}`}
-                className="group block h-full rounded-3xl border border-zinc-200 bg-white p-5 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-zinc-300 hover:shadow-md"
+                className="group block h-full rounded-3xl border border-zinc-200 bg-white p-4 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-zinc-300 hover:shadow-md sm:p-5"
               >
-                <div className="mb-5 flex items-center justify-between gap-4">
+                <div className="mb-4 flex items-center justify-between gap-4 sm:mb-5">
                   <span className="inline-flex rounded-full bg-zinc-100 px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-zinc-600">
                     {translate(project.type, language)}
                   </span>
@@ -369,14 +369,14 @@ function App() {
                   </span>
                 </div>
 
-                <h3 className="text-[17px] font-semibold tracking-tight text-zinc-950">{project.title}</h3>
+                <h3 className="text-[16px] font-semibold tracking-tight text-zinc-950 sm:text-[17px]">{project.title}</h3>
                 <p className="mt-2.5 text-sm leading-6 text-zinc-600">{translate(project.description, language)}</p>
               </a>
             ))}
           </div>
         </section>
 
-        <section id="experience" className="py-12 sm:py-16">
+        <section id="experience" className="scroll-mt-24 py-12 sm:py-16">
           <div className="mb-8">
             <p className="text-sm font-medium uppercase tracking-[0.24em] text-accent">{copy.experienceKicker}</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-950 sm:text-3xl">
@@ -384,7 +384,46 @@ function App() {
             </h2>
           </div>
 
-          <div className="overflow-x-auto rounded-2xl border border-zinc-200 bg-white shadow-soft [-webkit-overflow-scrolling:touch]">
+          <div className="space-y-4 sm:hidden">
+            {experiences.map((item) => (
+              <article key={`${translate(item.date, language)}-${translate(item.company, language)}`} className="rounded-2xl border border-zinc-200 bg-white p-4 shadow-soft">
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="space-y-1">
+                      <p className="text-xs font-medium uppercase tracking-[0.16em] text-zinc-400">{copy.table.date}</p>
+                      <p className="text-sm font-medium text-zinc-600">{translate(item.date, language)}</p>
+                    </div>
+                    <div className="rounded-full bg-zinc-100 px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-zinc-600">
+                      {translate(item.position, language)}
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <p className="text-xs font-medium uppercase tracking-[0.16em] text-zinc-400">{copy.table.company}</p>
+                    {item.companyHref ? (
+                      <a
+                        href={item.companyHref}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-sm font-semibold text-zinc-950 underline decoration-zinc-300 decoration-1 underline-offset-4"
+                      >
+                        {translate(item.company, language)}
+                      </a>
+                    ) : (
+                      <p className="text-sm font-semibold text-zinc-950">{translate(item.company, language)}</p>
+                    )}
+                  </div>
+
+                  <div className="space-y-1">
+                    <p className="text-xs font-medium uppercase tracking-[0.16em] text-zinc-400">{copy.table.content}</p>
+                    <p className="text-sm leading-6 text-zinc-600">{translate(item.content, language)}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="hidden overflow-x-auto rounded-2xl border border-zinc-200 bg-white shadow-soft [-webkit-overflow-scrolling:touch] sm:block">
             <table className="min-w-[760px] w-full border-separate border-spacing-0 text-left">
               <thead className="bg-zinc-50">
                 <tr>
@@ -436,7 +475,7 @@ function App() {
         </section>
       </main>
 
-      <footer id="contact" className="border-t border-zinc-200 bg-white">
+      <footer id="contact" className="scroll-mt-24 border-t border-zinc-200 bg-white">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <p className="text-sm text-zinc-500">{copy.footer.replace('{year}', String(year))}</p>
 
