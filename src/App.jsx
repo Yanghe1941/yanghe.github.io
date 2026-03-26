@@ -48,6 +48,7 @@ const experiences = [
   {
     date: '2021 - 2022',
     company: 'WOOK',
+    companyHref: 'https://home.wook.cn/id',
     position: '品牌运营经理',
     content: '参与品牌增长与运营体系建设。',
   },
@@ -60,12 +61,14 @@ const experiences = [
   {
     date: '2019 - 2020',
     company: 'MOTI 魔笛',
+    companyHref: 'https://motiplanet.com/',
     position: '用户增长运营经理',
     content: '参与用户增长与转化效率优化。',
   },
   {
     date: '2017 - 2018',
     company: '大象公会',
+    companyHref: 'https://zh.wikipedia.org/zh-cn/%E5%A4%A7%E8%B1%A1%E5%85%AC%E4%BC%9A',
     position: '商务经理',
     content: '参与“故事FM”“回形针”等内容项目合作。',
   },
@@ -234,7 +237,18 @@ function App() {
                       {item.date}
                     </td>
                     <td className="border-b border-zinc-100 px-4 py-3.5 align-top text-sm font-medium text-zinc-950">
-                      {item.company}
+                      {item.companyHref ? (
+                        <a
+                          href={item.companyHref}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="transition-colors duration-200 hover:text-zinc-600"
+                        >
+                          {item.company}
+                        </a>
+                      ) : (
+                        item.company
+                      )}
                     </td>
                     <td className="border-b border-zinc-100 px-4 py-3.5 align-top text-sm text-zinc-600">
                       {item.position}
