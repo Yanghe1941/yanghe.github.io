@@ -120,10 +120,10 @@ function App() {
             <p className="text-sm font-medium uppercase tracking-[0.24em] text-accent">
               Portfolio
             </p>
-            <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-zinc-950 sm:text-5xl lg:text-6xl">
-              <span className="block">杨鹤，个人开发者、美股交易员。</span>
-              <span className="mt-4 block">分享关于美股、区块链、AI、市场、品牌相关信息。</span>
-            </h1>
+            <div className="max-w-2xl space-y-2 text-base leading-7 text-zinc-600">
+              <p>杨鹤，个人开发者、美股交易员。</p>
+              <p>分享关于美股、区块链、AI、市场、品牌相关信息。</p>
+            </div>
 
             <div className="flex flex-wrap gap-3">
               <a
