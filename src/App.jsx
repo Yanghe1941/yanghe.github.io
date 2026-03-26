@@ -54,8 +54,8 @@ const experiences = [
     company: { en: 'Damus Lab', zh: 'Damus Lab' },
     position: { en: 'Co-founder', zh: '联合创始人' },
     content: {
-      en: 'Focused on Southeast Asia outbound growth and MCN operations.',
-      zh: '负责东南亚出海、MCN 相关工作。',
+      en: 'Based overseas long term, working on brand and e-commerce operations in Indonesia.',
+      zh: '长期 base 海外，负责印尼区域品牌、电商等业务。',
     },
   },
   {
@@ -82,10 +82,10 @@ const experiences = [
     date: { en: '2019 - 2020', zh: '2019 - 2020' },
     company: { en: 'MOTI', zh: 'MOTI 魔笛' },
     companyHref: 'https://motiplanet.com/',
-    position: { en: 'User Growth Operations Manager', zh: '用户增长运营经理' },
+    position: { en: 'Domestic Market User Growth', zh: 'MOTI 国内市场用户增长' },
     content: {
-      en: 'Focused on growth and conversion optimization.',
-      zh: '参与用户增长与转化效率优化。',
+      en: 'Supported domestic market user growth.',
+      zh: '负责国内市场用户增长。',
     },
   },
   {
@@ -94,17 +94,8 @@ const experiences = [
     companyHref: 'https://zh.wikipedia.org/zh-cn/%E5%A4%A7%E8%B1%A1%E5%85%AC%E4%BC%9A',
     position: { en: 'Business Manager', zh: '商务经理' },
     content: {
-      en: 'Worked on content project partnerships for StoryFM and Paperclip.',
-      zh: '参与“故事FM”“回形针”等内容项目合作。',
-    },
-  },
-  {
-    date: { en: '2013 - 2017', zh: '2013 - 2017' },
-    company: { en: 'Hebei University of Technology', zh: '河北工业大学' },
-    position: { en: '—', zh: '—' },
-    content: {
-      en: 'Built a solid long-term foundation.',
-      zh: '打下长期而扎实的基础。',
+      en: 'Handled business affairs for Elephant Club, StoryFM, and Paperclip projects.',
+      zh: '大象公会、故事FM、回形针项目的商务事宜。',
     },
   },
 ];
@@ -128,8 +119,8 @@ const siteCopy = {
     },
     blog: 'Blog',
     heroEyebrow: 'Portfolio',
-    heroLead: 'Yanghe, an independent developer and US stock trader.',
-    heroBody: 'Sharing thoughts on US stocks, blockchain, AI, markets, and branding.',
+    heroLead: 'Yanghe, from Baoding, Hebei, an independent developer and US stock trader.',
+    heroBody: 'Sharing content on US stocks, blockchain, AI, markets, and branding.',
     heroPrimary: 'View projects',
     heroSecondary: 'Contact',
     focusLabel: 'Focus',
@@ -160,7 +151,7 @@ const siteCopy = {
     },
     blog: '博客',
     heroEyebrow: '作品集',
-    heroLead: '杨鹤，个人开发者、美股交易员。',
+    heroLead: '杨鹤，河北保定人，个人开发者、美股交易员。',
     heroBody: '分享美股、区块链、AI、市场与品牌相关内容。',
     heroPrimary: '查看项目',
     heroSecondary: '联系方式',
@@ -244,8 +235,11 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-50 text-zinc-900 antialiased">
-      <header className="sticky top-0 z-50 border-b border-zinc-200/80 bg-zinc-50/90 backdrop-blur">
+    <div className="relative min-h-screen bg-[radial-gradient(circle_at_top,rgba(24,24,27,0.05),transparent_32%),linear-gradient(to_bottom,#fafafa,#f8fafc)] text-zinc-900 antialiased">
+      <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-[-8rem] h-72 w-72 -translate-x-1/2 rounded-full bg-zinc-900/5 blur-3xl sm:h-96 sm:w-96" />
+      <div aria-hidden="true" className="pointer-events-none absolute right-[-6rem] top-[28rem] h-72 w-72 rounded-full bg-zinc-400/10 blur-3xl sm:h-96 sm:w-96" />
+
+      <header className="sticky top-0 z-50 border-b border-white/60 bg-zinc-50/75 backdrop-blur-xl shadow-[0_10px_30px_-28px_rgba(24,24,27,0.45)]">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
           <a href="#about" className="text-sm font-semibold tracking-[0.2em] text-zinc-950 uppercase">
             Yanghe
@@ -292,9 +286,10 @@ function App() {
       <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <section
           id="about"
-          className="scroll-mt-24 grid gap-8 py-12 sm:py-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:py-24"
+          className="scroll-mt-24 grid gap-8 py-12 sm:py-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:py-24"
         >
-          <div className="space-y-5">
+          <div className="rounded-[2rem] border border-white/80 bg-white/70 p-5 shadow-[0_20px_70px_-45px_rgba(24,24,27,0.45)] backdrop-blur-sm sm:p-8">
+            <div className="space-y-5">
             <p className="text-sm font-medium uppercase tracking-[0.24em] text-accent">
               {copy.heroEyebrow}
             </p>
@@ -317,18 +312,19 @@ function App() {
                 {copy.heroSecondary}
               </a>
             </div>
+            </div>
           </div>
 
-          <aside className="rounded-3xl border border-zinc-200 bg-white p-5 shadow-soft sm:p-6">
+          <aside className="rounded-[2rem] border border-zinc-200/70 bg-white/85 p-5 shadow-[0_18px_60px_-40px_rgba(24,24,27,0.45)] backdrop-blur-sm sm:p-6">
             <div className="space-y-5">
               <div>
-                <p className="text-xs font-medium uppercase tracking-[0.24em] text-zinc-400">{copy.focusLabel}</p>
+                <p className="text-xs font-medium uppercase tracking-[0.3em] text-zinc-400">{copy.focusLabel}</p>
                 <p className="mt-2 text-lg font-semibold text-zinc-950">{copy.focusTitle}</p>
               </div>
 
               <div className="grid gap-3 text-sm text-zinc-600">
                 {copy.focusPoints.map((point) => (
-                  <div key={point} className="rounded-2xl bg-zinc-50 px-4 py-3">
+                  <div key={point} className="rounded-2xl border border-zinc-100 bg-gradient-to-r from-zinc-50 to-white px-4 py-3">
                     {point}
                   </div>
                 ))}
@@ -355,13 +351,13 @@ function App() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={`${project.title} ${translate(project.type, language)}`}
-                className="group block h-full rounded-3xl border border-zinc-200 bg-white p-4 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-zinc-300 hover:shadow-md sm:p-5"
+                className="group block h-full rounded-[1.75rem] border border-zinc-200/70 bg-gradient-to-b from-white to-zinc-50/60 p-4 shadow-[0_18px_50px_-36px_rgba(24,24,27,0.45)] transition-all duration-200 hover:-translate-y-1 hover:border-zinc-300 hover:shadow-[0_24px_70px_-42px_rgba(24,24,27,0.5)] sm:p-5"
               >
                 <div className="mb-4 flex items-center justify-between gap-4 sm:mb-5">
-                  <span className="inline-flex rounded-full bg-zinc-100 px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-zinc-600">
+                  <span className="inline-flex rounded-full border border-zinc-200 bg-white px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-zinc-600 shadow-[0_8px_20px_-18px_rgba(24,24,27,0.45)]">
                     {translate(project.type, language)}
                   </span>
-                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-zinc-200 text-zinc-400 transition-colors duration-200 group-hover:border-zinc-300 group-hover:text-zinc-950">
+                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-400 transition-colors duration-200 group-hover:border-zinc-300 group-hover:text-zinc-950">
                     <svg viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5 fill-none stroke-current stroke-[1.8]">
                       <path d="M7 17 17 7" />
                       <path d="M9 7h8v8" />
@@ -386,14 +382,14 @@ function App() {
 
           <div className="space-y-4 sm:hidden">
             {experiences.map((item) => (
-              <article key={`${translate(item.date, language)}-${translate(item.company, language)}`} className="rounded-2xl border border-zinc-200 bg-white p-4 shadow-soft">
+              <article key={`${translate(item.date, language)}-${translate(item.company, language)}`} className="rounded-[1.5rem] border border-zinc-200/70 bg-white/85 p-4 shadow-[0_16px_50px_-40px_rgba(24,24,27,0.45)] backdrop-blur-sm">
                 <div className="flex flex-col gap-3">
                   <div className="flex items-start justify-between gap-3">
                     <div className="space-y-1">
                       <p className="text-xs font-medium uppercase tracking-[0.16em] text-zinc-400">{copy.table.date}</p>
                       <p className="text-sm font-medium text-zinc-600">{translate(item.date, language)}</p>
                     </div>
-                    <div className="rounded-full bg-zinc-100 px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-zinc-600">
+                    <div className="rounded-full border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-zinc-600">
                       {translate(item.position, language)}
                     </div>
                   </div>
@@ -423,7 +419,7 @@ function App() {
             ))}
           </div>
 
-          <div className="hidden overflow-x-auto rounded-2xl border border-zinc-200 bg-white shadow-soft [-webkit-overflow-scrolling:touch] sm:block">
+          <div className="hidden overflow-x-auto rounded-[1.75rem] border border-zinc-200/70 bg-white/90 shadow-[0_18px_60px_-42px_rgba(24,24,27,0.45)] [-webkit-overflow-scrolling:touch] sm:block">
             <table className="min-w-[760px] w-full border-separate border-spacing-0 text-left">
               <thead className="bg-zinc-50">
                 <tr>
@@ -477,7 +473,7 @@ function App() {
 
       <footer id="contact" className="scroll-mt-24 border-t border-zinc-200 bg-white">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-          <p className="text-sm text-zinc-500">{copy.footer.replace('{year}', String(year))}</p>
+          <p className="max-w-md text-sm leading-6 text-zinc-500">{copy.footer.replace('{year}', String(year))}</p>
 
           <div className="flex flex-wrap items-center gap-3">
             <a
