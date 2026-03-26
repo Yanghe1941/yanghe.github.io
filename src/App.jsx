@@ -55,6 +55,7 @@ const experiences = [
   {
     date: '2020 - 2021',
     company: 'WeGene 微基因',
+    companyHref: 'https://www.wegene.com/en/',
     position: '运营经理',
     content: '负责消费级基因检测产品的电商运营与用户增长。',
   },
@@ -242,7 +243,7 @@ function App() {
                           href={item.companyHref}
                           target="_blank"
                           rel="noreferrer"
-                          className="transition-colors duration-200 hover:text-zinc-600"
+                          className="text-blue-600 transition-colors duration-200 hover:text-blue-700 hover:underline"
                         >
                           {item.company}
                         </a>
