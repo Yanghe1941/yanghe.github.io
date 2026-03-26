@@ -272,7 +272,7 @@ function App() {
             </button>
 
             <a
-              href="https://quaily.com/yanghe"
+              href="https://blog.yanghe.moodex.cc/"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-3 py-2 text-[13px] font-medium text-zinc-700 transition-colors duration-200 hover:border-zinc-300 hover:text-zinc-950"
