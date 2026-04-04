@@ -205,6 +205,14 @@ const translate = (value, language) => {
   return value ?? '';
 };
 
+const trackAnalyticsEvent = (eventName, eventParams = {}) => {
+  if (typeof window === 'undefined' || typeof window.gtag !== 'function') {
+    return;
+  }
+
+  window.gtag('event', eventName, eventParams);
+};
+
 function App() {
   const [language, setLanguage] = useState(getInitialLanguage());
   const copy = siteCopy[language] ?? siteCopy.en;
@@ -235,8 +243,38 @@ function App() {
     }
   }, [language, copy.description, copy.title]);
 
-  const toggleLanguage = () => {
-    setLanguage((current) => (current === 'en' ? 'zh' : 'en'));
+  const handleLanguageToggle = () => {
+    const nextLanguage = language === 'en' ? 'zh' : 'en';
+
+    trackAnalyticsEvent('language_switch', {
+      from_language: language,
+      to_language: nextLanguage,
+    });
+
+    setLanguage(nextLanguage);
+  };
+
+  const handleHeroButtonClick = (buttonName) => {
+    trackAnalyticsEvent('button_click', {
+      button_name: buttonName,
+      section: 'hero',
+      language,
+    });
+  };
+
+  const handleBlogClick = () => {
+    trackAnalyticsEvent('blog_click', {
+      destination: 'https://blog.yanghe.moodex.cc/',
+      language,
+    });
+  };
+
+  const handleProjectClick = (project) => {
+    trackAnalyticsEvent('project_click', {
+      project_name: project.title,
+      project_type: translate(project.type, language),
+      language,
+    });
   };
 
   return (
@@ -263,7 +301,7 @@ function App() {
 
             <button
               type="button"
-              onClick={toggleLanguage}
+              onClick={handleLanguageToggle}
               aria-label={copy.languageToggleLabel}
               aria-pressed={language === 'zh'}
               className="inline-flex items-center rounded-full border border-zinc-200 bg-white px-3 py-2 text-[13px] font-medium text-zinc-700 transition-colors duration-200 hover:border-zinc-300 hover:text-zinc-950"
@@ -275,6 +313,7 @@ function App() {
               href="https://blog.yanghe.moodex.cc/"
               target="_blank"
               rel="noreferrer"
+              onClick={handleBlogClick}
               className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-3 py-2 text-[13px] font-medium text-zinc-700 transition-colors duration-200 hover:border-zinc-300 hover:text-zinc-950"
             >
               <span>{copy.blog}</span>
@@ -306,12 +345,14 @@ function App() {
             <div className="flex flex-wrap gap-3">
               <a
                 href="#projects"
+                onClick={() => handleHeroButtonClick('view_projects')}
                 className="inline-flex items-center justify-center rounded-full bg-zinc-950 px-5 py-3 text-sm font-medium text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-zinc-800"
               >
                 {copy.heroPrimary}
               </a>
               <a
                 href="#contact"
+                onClick={() => handleHeroButtonClick('contact')}
                 className="inline-flex items-center justify-center rounded-full border border-zinc-300 bg-white px-5 py-3 text-sm font-medium text-zinc-900 transition-transform duration-200 hover:-translate-y-0.5 hover:border-zinc-400"
               >
                 {copy.heroSecondary}
@@ -355,6 +396,7 @@ function App() {
                 href={project.href}
                 target="_blank"
                 rel="noreferrer"
+                onClick={() => handleProjectClick(project)}
                 aria-label={`${project.title} ${translate(project.type, language)}`}
                 className="group block h-full rounded-[1.75rem] border border-zinc-200/70 bg-gradient-to-b from-white to-zinc-50/60 p-4 shadow-[0_18px_50px_-36px_rgba(24,24,27,0.45)] transition-all duration-200 hover:-translate-y-1 hover:border-zinc-300 hover:shadow-[0_24px_70px_-42px_rgba(24,24,27,0.5)] sm:p-5"
               >
