@@ -269,10 +269,24 @@ function App() {
     });
   };
 
+  const handleNavClick = (section) => {
+    trackAnalyticsEvent('nav_click', {
+      section,
+      language,
+    });
+  };
+
   const handleProjectClick = (project) => {
     trackAnalyticsEvent('project_click', {
       project_name: project.title,
       project_type: translate(project.type, language),
+      language,
+    });
+  };
+
+  const handleContactClick = (method) => {
+    trackAnalyticsEvent('contact_click', {
+      method,
       language,
     });
   };
@@ -284,7 +298,7 @@ function App() {
 
       <header className="sticky top-0 z-50 border-b border-white/60 bg-zinc-50/75 backdrop-blur-xl shadow-[0_10px_30px_-28px_rgba(24,24,27,0.45)]">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-          <a href="#about" className="text-sm font-semibold tracking-[0.2em] text-zinc-950 uppercase">
+          <a href="#about" onClick={() => handleNavClick('brand')} className="text-sm font-semibold tracking-[0.2em] text-zinc-950 uppercase">
             Yanghe
           </a>
 
@@ -293,6 +307,7 @@ function App() {
               <a
                 key={item.href}
                 href={item.href}
+                onClick={() => handleNavClick(item.key)}
                 className="rounded-full px-2 py-1.5 transition-colors duration-200 hover:bg-zinc-100 hover:text-zinc-950"
               >
                 {copy.nav[item.key]}
@@ -528,6 +543,7 @@ function App() {
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub"
+              onClick={() => handleContactClick('github')}
               className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-600 transition-colors duration-200 hover:border-zinc-300 hover:text-zinc-950"
             >
               <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 fill-current">
@@ -538,6 +554,7 @@ function App() {
             <a
               href="mailto:hello@yanghe.moodex.cc"
               aria-label="Email"
+              onClick={() => handleContactClick('email')}
               className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-600 transition-colors duration-200 hover:border-zinc-300 hover:text-zinc-950"
             >
               <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 fill-none stroke-current stroke-[1.8]">
