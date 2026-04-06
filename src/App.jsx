@@ -246,7 +246,7 @@ function App() {
   const handleLanguageToggle = () => {
     const nextLanguage = language === 'en' ? 'zh' : 'en';
 
-    trackAnalyticsEvent('language_switch', {
+    trackAnalyticsEvent('language_change', {
       from_language: language,
       to_language: nextLanguage,
     });
@@ -254,39 +254,44 @@ function App() {
     setLanguage(nextLanguage);
   };
 
-  const handleHeroButtonClick = (buttonName) => {
-    trackAnalyticsEvent('button_click', {
-      button_name: buttonName,
+  const handleHeroButtonClick = (ctaName) => {
+    trackAnalyticsEvent('cta_click', {
+      cta_name: ctaName,
       section: 'hero',
       language,
     });
   };
 
   const handleBlogClick = () => {
-    trackAnalyticsEvent('blog_click', {
-      destination: 'https://blog.yanghe.moodex.cc/',
+    trackAnalyticsEvent('external_link_click', {
+      link_name: 'blog',
+      url: 'https://blog.yanghe.moodex.cc/',
+      section: 'header',
       language,
     });
   };
 
   const handleNavClick = (section) => {
-    trackAnalyticsEvent('nav_click', {
-      section,
+    trackAnalyticsEvent('navigation_click', {
+      nav_item: section,
+      section: 'header',
       language,
     });
   };
 
   const handleProjectClick = (project) => {
-    trackAnalyticsEvent('project_click', {
+    trackAnalyticsEvent('project_card_click', {
       project_name: project.title,
       project_type: translate(project.type, language),
+      section: 'projects',
       language,
     });
   };
 
   const handleContactClick = (method) => {
     trackAnalyticsEvent('contact_click', {
-      method,
+      contact_method: method,
+      section: 'footer',
       language,
     });
   };
