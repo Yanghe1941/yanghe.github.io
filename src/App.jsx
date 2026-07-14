@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from 'react';
-import { projects, experiences, navItems, siteCopy } from './data.js';
+import { projects, experiences, navItems, siteCopy, writing } from './data.js';
 import { trackEvent } from './analytics.js';
 import { getInitialLanguage, translate, useActiveSection, useScrollTop } from './hooks.js';
 
@@ -234,7 +234,7 @@ function App() {
             <p className="text-sm font-medium uppercase tracking-[0.24em] text-accent">
               {copy.heroEyebrow}
             </p>
-            <h1 className="text-2xl font-bold tracking-tight text-zinc-950 sm:text-3xl">
+            <h1 className="max-w-xl text-3xl font-bold tracking-tight text-zinc-950 sm:text-4xl sm:leading-tight">
               {copy.heroName}
             </h1>
             <div className="max-w-2xl space-y-2 text-[15px] leading-7 text-zinc-600 sm:text-base sm:leading-8">
@@ -300,6 +300,17 @@ function App() {
                 aria-label={`${project.title} ${translate(project.type, language)}`}
                 className="group block h-full rounded-[1.75rem] border border-zinc-200/70 bg-gradient-to-b from-white to-zinc-50/60 p-4 shadow-[0_18px_50px_-36px_rgba(24,24,27,0.45)] transition-all duration-200 hover:-translate-y-1 hover:border-zinc-300 hover:shadow-[0_24px_70px_-42px_rgba(24,24,27,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 sm:p-5"
               >
+                <div className="project-preview mb-4 flex aspect-[16/8] items-end justify-between overflow-hidden rounded-2xl border border-zinc-200/80 p-3 sm:mb-5">
+                  {project.preview ? (
+                    <img src={project.preview} alt={`${project.title} app preview`} className="h-full w-full object-cover object-top" loading="lazy" />
+                  ) : (
+                    <>
+                      <span className="text-[10px] font-semibold tracking-[0.2em] text-zinc-500">{translate(project.visual, language)}</span>
+                      <span className="h-10 w-10 rounded-full border border-white/70 bg-white/70 shadow-sm" />
+                    </>
+                  )}
+                </div>
+
                 <div className="mb-4 flex items-center justify-between gap-4 sm:mb-5">
                   <span className="inline-flex rounded-full border border-zinc-200 bg-white px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-zinc-600 shadow-[0_8px_20px_-18px_rgba(24,24,27,0.45)]">
                     {translate(project.type, language)}
@@ -314,8 +325,34 @@ function App() {
 
                 <h3 className="text-[16px] font-semibold tracking-tight text-zinc-950 sm:text-[17px]">{project.title}</h3>
                 <p className="mt-2.5 text-sm leading-6 text-zinc-600">{translate(project.description, language)}</p>
+                <p className="mt-4 text-[11px] font-medium uppercase tracking-[0.14em] text-zinc-500">{translate(project.highlight, language)}</p>
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-zinc-950">
+                  {copy.projectLink}
+                  <span aria-hidden="true">→</span>
+                </span>
               </a>
             ))}
+          </div>
+        </section>
+
+        <section id="writing" className="scroll-mt-24 py-12 sm:py-16">
+          <div className="grid gap-8 rounded-[2rem] border border-zinc-200/70 bg-white/75 p-5 shadow-[0_18px_60px_-42px_rgba(24,24,27,0.45)] backdrop-blur-sm sm:p-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div>
+              <p className="text-sm font-medium uppercase tracking-[0.24em] text-accent">{copy.writingKicker}</p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-950 sm:text-3xl">{copy.writingTitle}</h2>
+              <p className="mt-4 max-w-sm text-sm leading-6 text-zinc-600">{copy.writingDescription}</p>
+              <a href="https://blog.yanghe.moodex.cc/" target="_blank" rel="noreferrer" onClick={handleBlogClick} className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-zinc-950 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-950">
+                {copy.writingLink}<span aria-hidden="true">↗</span>
+              </a>
+            </div>
+            <div className="divide-y divide-zinc-200/80 border-y border-zinc-200/80">
+              {writing.map((post) => (
+                <a key={post.href} href={post.href} target="_blank" rel="noreferrer" onClick={handleBlogClick} className="group flex items-start justify-between gap-5 py-4 first:pt-0 last:pb-0">
+                  <h3 className="text-sm font-medium leading-6 text-zinc-900 transition-colors group-hover:text-accent">{translate(post.title, language)}</h3>
+                  <time dateTime={post.date} className="shrink-0 pt-0.5 text-xs text-zinc-400">{post.date}</time>
+                </a>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -421,7 +458,17 @@ function App() {
       </main>
 
       <footer id="contact" className="scroll-mt-24 border-t border-zinc-200 bg-white">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+          <div className="flex flex-col gap-7 border-b border-zinc-200 pb-8 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <p className="text-sm font-medium uppercase tracking-[0.24em] text-accent">{copy.contactKicker}</p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-950 sm:text-3xl">{copy.contactTitle}</h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-600">{copy.contactBody}</p>
+            </div>
+            <a href="mailto:hello@yanghe.moodex.cc" onClick={() => handleContactClick('email_cta')} className="inline-flex shrink-0 items-center justify-center rounded-full bg-zinc-950 px-5 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-0.5 hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2">{copy.contactButton}</a>
+          </div>
+
+          <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="max-w-md text-sm leading-6 text-zinc-500">{copy.footer.replace('{year}', String(year))}</p>
 
           <div className="flex flex-wrap items-center gap-3">
@@ -450,6 +497,7 @@ function App() {
               </svg>
               <span className="sr-only">Email</span>
             </a>
+          </div>
           </div>
         </div>
       </footer>
