@@ -26,7 +26,7 @@ const alternateLinks = [
 ].join('\n    ');
 
 const beaconScript = beaconToken
-  ? `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='${JSON.stringify({ token: beaconToken })}'></script>`
+  ? `<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='${JSON.stringify({ token: beaconToken })}'></script>`
   : '';
 
 for (const page of pages) {
