@@ -23,17 +23,6 @@ body {
   overflow-x: clip;
 }
 
-.project-preview {
-  background:
-    radial-gradient(circle at 20% 10%, rgba(47, 111, 237, 0.2), transparent 35%),
-    linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
-}
-
-.project-preview:has(img) {
-  padding: 0;
-  background: #f4f4f5;
-}
-
 ::selection {
   @apply bg-accent/20 text-zinc-950;
 }

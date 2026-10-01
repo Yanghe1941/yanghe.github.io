@@ -214,11 +214,13 @@ function App({ language }) {
         >
           <div className="rounded-[2rem] border border-white/80 bg-white/70 p-5 shadow-[0_20px_70px_-45px_rgba(24,24,27,0.45)] backdrop-blur-sm sm:p-8">
             <div className="space-y-5">
-            <p className="text-sm font-medium uppercase tracking-[0.24em] text-accent">
-              {copy.heroEyebrow}
-            </p>
-            <h1 className="max-w-xl text-3xl font-bold tracking-tight text-zinc-950 sm:text-4xl sm:leading-tight">
-              {copy.heroName}
+            <h1>
+              <span className="block text-sm font-medium uppercase tracking-[0.24em] text-accent">
+                {copy.heroEyebrow}
+              </span>
+              <span className="mt-5 block max-w-xl text-3xl font-bold tracking-tight text-zinc-950 sm:text-4xl sm:leading-tight">
+                {copy.heroName}
+              </span>
             </h1>
             <div className="max-w-2xl space-y-2 text-[15px] leading-7 text-zinc-600 sm:text-base sm:leading-8">
               <p>{copy.heroLead}</p>
@@ -283,15 +285,16 @@ function App({ language }) {
                 aria-label={`${project.title} ${translate(project.type, language)}`}
                 className="group block h-full rounded-[1.75rem] border border-zinc-200/70 bg-gradient-to-b from-white to-zinc-50/60 p-4 shadow-[0_18px_50px_-36px_rgba(24,24,27,0.45)] transition-all duration-200 hover:-translate-y-1 hover:border-zinc-300 hover:shadow-[0_24px_70px_-42px_rgba(24,24,27,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 sm:p-5"
               >
-                <div className="project-preview mb-4 flex aspect-[16/8] items-end justify-between overflow-hidden rounded-2xl border border-zinc-200/80 p-3 sm:mb-5">
-                  {project.preview ? (
-                    <img src={project.preview} alt={copy.a11y.appPreview.replace('{title}', project.title)} width={430} height={932} className="h-full w-full object-cover object-top" loading="lazy" decoding="async" />
-                  ) : (
-                    <>
-                      <span className="text-[10px] font-semibold tracking-[0.2em] text-zinc-500">{translate(project.visual, language)}</span>
-                      <span className="h-10 w-10 rounded-full border border-white/70 bg-white/70 shadow-sm" />
-                    </>
-                  )}
+                <div className="mb-4 aspect-[16/8] overflow-hidden rounded-2xl border border-zinc-200/80 bg-zinc-100 sm:mb-5">
+                  <img
+                    src={project.preview.src}
+                    alt={copy.a11y.appPreview.replace('{title}', project.title)}
+                    width={project.preview.width}
+                    height={project.preview.height}
+                    className="h-full w-full object-cover object-top"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
 
                 <div className="mb-4 flex items-center justify-between gap-4 sm:mb-5">
@@ -309,6 +312,7 @@ function App({ language }) {
                 <h3 className="text-[16px] font-semibold tracking-tight text-zinc-950 sm:text-[17px]">{project.title}</h3>
                 <p className="mt-2.5 text-sm leading-6 text-zinc-600">{translate(project.description, language)}</p>
                 <p className="mt-4 text-[11px] font-medium uppercase tracking-[0.14em] text-zinc-500">{translate(project.highlight, language)}</p>
+                <p className="mt-3 flex w-fit rounded-full bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-700">{translate(project.metric, language)}</p>
                 <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-zinc-950">
                   {copy.projectLink}
                   <span aria-hidden="true">→</span>
