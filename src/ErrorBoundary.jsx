@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { getInitialLanguage } from './hooks.js';
+import { getPathLanguage } from './hooks.js';
 
 const errorCopy = {
   en: { title: 'Something went wrong', body: 'Please refresh the page to try again.', button: 'Refresh' },
@@ -18,7 +18,7 @@ class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
-      const copy = errorCopy[getInitialLanguage()] ?? errorCopy.en;
+      const copy = errorCopy[getPathLanguage(window.location.pathname)] ?? errorCopy.en;
       return (
         <div className="flex min-h-screen items-center justify-center bg-zinc-50 px-4 text-center">
           <div className="space-y-4">

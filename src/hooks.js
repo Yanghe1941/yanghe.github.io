@@ -1,17 +1,36 @@
 import { useEffect, useState, useCallback } from 'react';
 
-export const getInitialLanguage = () => {
-  if (typeof window === 'undefined') {
-    return 'en';
-  }
+const LANGUAGE_KEY = 'site-language';
 
+export const languagePaths = { en: '/', zh: '/zh/' };
+
+export const getPathLanguage = (pathname) => (pathname.startsWith('/zh') ? 'zh' : 'en');
+
+export const getSavedLanguage = () => {
   try {
-    const savedLanguage = window.localStorage.getItem('site-language');
+    const savedLanguage = window.localStorage.getItem(LANGUAGE_KEY);
     if (savedLanguage === 'en' || savedLanguage === 'zh') {
       return savedLanguage;
     }
   } catch {
     // Ignore storage access failures.
+  }
+
+  return null;
+};
+
+export const saveLanguage = (language) => {
+  try {
+    window.localStorage.setItem(LANGUAGE_KEY, language);
+  } catch {
+    // Ignore storage write failures.
+  }
+};
+
+export const getPreferredLanguage = () => {
+  const savedLanguage = getSavedLanguage();
+  if (savedLanguage) {
+    return savedLanguage;
   }
 
   const browserLanguage = window.navigator.languages?.[0] ?? window.navigator.language ?? 'en';

@@ -27,7 +27,8 @@ npm run build
 ## 目录说明
 
 - `index.html`：Vite 入口页（开发与构建共用）
-- `src/main.jsx`：React 挂载入口
+- `src/main.jsx`：浏览器入口（按路径确定语言，水合预渲染的 HTML）
+- `src/entry-server.jsx`：预渲染入口
 - `src/App.jsx`：核心页面组件
 - `src/data.js`：项目、文章、经历与中英文文案
 - `src/index.css`：Tailwind 入口样式
@@ -40,4 +41,6 @@ npm run build
 
 - 仓库 **Settings → Pages → Source** 需设为 **GitHub Actions**。
 - 自定义域名 `yanghe.moodex.cc` 由 `public/CNAME` 提供，DNS 为 CNAME `yanghe` → `yanghe1941.github.io`。
-- 静态资源（favicon、og-image、robots.txt、sitemap.xml、404.html）放在 `public/`。
+- 静态资源（favicon、og-image、robots.txt、404.html）放在 `public/`。
+- `npm run build` 会预渲染两个静态页面：英文 `/` 和中文 `/zh/`，各自带对应的 title、description、canonical 与 hreflang，并生成 `sitemap.xml`（见 `scripts/prerender.mjs`）。
+- Cloudflare Web Analytics：在仓库 **Settings → Secrets and variables → Actions → Variables** 中添加 `CF_BEACON_TOKEN`，构建时会自动注入统计脚本；未设置则不注入。

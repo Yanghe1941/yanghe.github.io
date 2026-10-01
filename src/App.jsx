@@ -1,42 +1,17 @@
 import { useEffect, useState, useMemo } from 'react';
 import { projects, experiences, navItems, siteCopy, writing } from './data.js';
 import { trackEvent } from './analytics.js';
-import { getInitialLanguage, translate, useActiveSection, useScrollTop } from './hooks.js';
+import { languagePaths, saveLanguage, translate, useActiveSection, useScrollTop } from './hooks.js';
 
 const SECTION_IDS = ['about', 'projects', 'writing', 'experience', 'contact'];
 
-function App() {
-  const [language, setLanguage] = useState(getInitialLanguage());
+function App({ language }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const copy = siteCopy[language] ?? siteCopy.en;
   const year = new Date().getFullYear();
   const activeSection = useActiveSection(useMemo(() => SECTION_IDS, []));
   const { show: showBackTop, scrollToTop } = useScrollTop(400);
-
-  useEffect(() => {
-    const title = copy.title;
-    const description = copy.description;
-
-    document.documentElement.lang = language === 'zh' ? 'zh-Hans' : 'en';
-    document.title = title;
-
-    const metaDescription = document.querySelector('meta[name="description"]');
-    const ogDescription = document.querySelector('meta[property="og:description"]');
-
-    if (metaDescription) {
-      metaDescription.setAttribute('content', description);
-    }
-
-    if (ogDescription) {
-      ogDescription.setAttribute('content', description);
-    }
-
-    try {
-      window.localStorage.setItem('site-language', language);
-    } catch {
-      // Ignore storage write failures.
-    }
-  }, [language, copy.description, copy.title]);
+  const nextLanguage = language === 'en' ? 'zh' : 'en';
 
   useEffect(() => {
     if (menuOpen) {
@@ -48,14 +23,12 @@ function App() {
   }, [menuOpen]);
 
   const handleLanguageToggle = () => {
-    const nextLanguage = language === 'en' ? 'zh' : 'en';
-
     trackEvent('language_change', {
       from_language: language,
       to_language: nextLanguage,
     });
 
-    setLanguage(nextLanguage);
+    saveLanguage(nextLanguage);
   };
 
   const handleHeroButtonClick = (ctaName) => {
@@ -162,15 +135,15 @@ function App() {
               </a>
             ))}
 
-            <button
-              type="button"
+            <a
+              href={languagePaths[nextLanguage]}
+              hrefLang={nextLanguage === 'zh' ? 'zh-Hans' : 'en'}
               onClick={handleLanguageToggle}
               aria-label={copy.languageToggleLabel}
-              aria-pressed={language === 'zh'}
               className="inline-flex items-center rounded-full border border-zinc-200 bg-white px-3 py-2 text-[13px] font-medium text-zinc-700 transition-colors duration-200 hover:border-zinc-300 hover:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
             >
               {copy.languageToggle}
-            </button>
+            </a>
 
             <a
               href="https://blog.yanghe.moodex.cc/"
@@ -204,14 +177,15 @@ function App() {
               ))}
 
               <div className="mt-2 flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => { handleLanguageToggle(); setMenuOpen(false); }}
+                <a
+                  href={languagePaths[nextLanguage]}
+                  hrefLang={nextLanguage === 'zh' ? 'zh-Hans' : 'en'}
+                  onClick={handleLanguageToggle}
                   aria-label={copy.languageToggleLabel}
                   className="inline-flex items-center rounded-full border border-zinc-200 bg-white px-3 py-2 text-[13px] font-medium text-zinc-700 transition-colors duration-200 hover:border-zinc-300 hover:text-zinc-950"
                 >
                   {copy.languageToggle}
-                </button>
+                </a>
 
                 <a
                   href="https://blog.yanghe.moodex.cc/"
