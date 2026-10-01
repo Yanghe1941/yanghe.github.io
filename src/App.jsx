@@ -3,7 +3,7 @@ import { projects, experiences, navItems, siteCopy, writing } from './data.js';
 import { trackEvent } from './analytics.js';
 import { getInitialLanguage, translate, useActiveSection, useScrollTop } from './hooks.js';
 
-const SECTION_IDS = ['about', 'projects', 'experience', 'contact'];
+const SECTION_IDS = ['about', 'projects', 'writing', 'experience', 'contact'];
 
 function App() {
   const [language, setLanguage] = useState(getInitialLanguage());
@@ -66,11 +66,20 @@ function App() {
     });
   };
 
-  const handleBlogClick = () => {
+  const handleBlogClick = (section = 'header') => {
     trackEvent('external_link_click', {
       link_name: 'blog',
       url: 'https://blog.yanghe.moodex.cc/',
-      section: 'header',
+      section,
+      language,
+    });
+  };
+
+  const handleArticleClick = (post) => {
+    trackEvent('article_click', {
+      article_title: translate(post.title, language),
+      url: post.href,
+      section: 'writing',
       language,
     });
   };
@@ -109,7 +118,7 @@ function App() {
   return (
     <div className="relative min-h-screen bg-[radial-gradient(circle_at_top,rgba(24,24,27,0.05),transparent_32%),linear-gradient(to_bottom,#fafafa,#f8fafc)] text-zinc-900 antialiased">
       <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-zinc-950 focus:px-4 focus:py-2 focus:text-sm focus:text-white">
-        Skip to content
+        {copy.a11y.skipToContent}
       </a>
 
       <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-[-8rem] h-72 w-72 -translate-x-1/2 rounded-full bg-zinc-900/5 blur-3xl sm:h-96 sm:w-96" />
@@ -124,7 +133,7 @@ function App() {
           <button
             type="button"
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-label={menuOpen ? copy.a11y.closeMenu : copy.a11y.openMenu}
             aria-expanded={menuOpen}
             className="inline-flex h-9 w-9 items-center justify-center rounded-full text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 sm:hidden"
           >
@@ -141,7 +150,7 @@ function App() {
             )}
           </button>
 
-          <nav aria-label="Primary" className="hidden items-center gap-2 text-[13px] text-zinc-600 sm:flex sm:gap-3">
+          <nav aria-label={copy.a11y.primaryNav} className="hidden items-center gap-2 text-[13px] text-zinc-600 sm:flex sm:gap-3">
             {navItems.map((item) => (
               <a
                 key={item.href}
@@ -167,7 +176,7 @@ function App() {
               href="https://blog.yanghe.moodex.cc/"
               target="_blank"
               rel="noreferrer"
-              onClick={handleBlogClick}
+              onClick={() => handleBlogClick()}
               className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-3 py-2 text-[13px] font-medium text-zinc-700 transition-colors duration-200 hover:border-zinc-300 hover:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
             >
               <span>{copy.blog}</span>
@@ -181,7 +190,7 @@ function App() {
         </div>
 
         {menuOpen && (
-          <nav aria-label="Mobile" className="border-t border-zinc-200/60 bg-zinc-50/95 px-4 pb-5 pt-3 backdrop-blur-xl sm:hidden">
+          <nav aria-label={copy.a11y.mobileNav} className="border-t border-zinc-200/60 bg-zinc-50/95 px-4 pb-5 pt-3 backdrop-blur-xl sm:hidden">
             <div className="flex flex-col gap-1 text-[14px] text-zinc-600">
               {navItems.map((item) => (
                 <a
@@ -302,7 +311,7 @@ function App() {
               >
                 <div className="project-preview mb-4 flex aspect-[16/8] items-end justify-between overflow-hidden rounded-2xl border border-zinc-200/80 p-3 sm:mb-5">
                   {project.preview ? (
-                    <img src={project.preview} alt={`${project.title} app preview`} className="h-full w-full object-cover object-top" loading="lazy" />
+                    <img src={project.preview} alt={copy.a11y.appPreview.replace('{title}', project.title)} width={430} height={932} className="h-full w-full object-cover object-top" loading="lazy" decoding="async" />
                   ) : (
                     <>
                       <span className="text-[10px] font-semibold tracking-[0.2em] text-zinc-500">{translate(project.visual, language)}</span>
@@ -341,13 +350,13 @@ function App() {
               <p className="text-sm font-medium uppercase tracking-[0.24em] text-accent">{copy.writingKicker}</p>
               <h2 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-950 sm:text-3xl">{copy.writingTitle}</h2>
               <p className="mt-4 max-w-sm text-sm leading-6 text-zinc-600">{copy.writingDescription}</p>
-              <a href="https://blog.yanghe.moodex.cc/" target="_blank" rel="noreferrer" onClick={handleBlogClick} className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-zinc-950 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-950">
+              <a href="https://blog.yanghe.moodex.cc/" target="_blank" rel="noreferrer" onClick={() => handleBlogClick('writing')} className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-zinc-950 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-950">
                 {copy.writingLink}<span aria-hidden="true">↗</span>
               </a>
             </div>
             <div className="divide-y divide-zinc-200/80 border-y border-zinc-200/80">
               {writing.map((post) => (
-                <a key={post.href} href={post.href} target="_blank" rel="noreferrer" onClick={handleBlogClick} className="group flex items-start justify-between gap-5 py-4 first:pt-0 last:pb-0">
+                <a key={post.href} href={post.href} target="_blank" rel="noreferrer" onClick={() => handleArticleClick(post)} className="group flex items-start justify-between gap-5 py-4 first:pt-0 last:pb-0">
                   <h3 className="text-sm font-medium leading-6 text-zinc-900 transition-colors group-hover:text-accent">{translate(post.title, language)}</h3>
                   <time dateTime={post.date} className="shrink-0 pt-0.5 text-xs text-zinc-400">{post.date}</time>
                 </a>
@@ -487,7 +496,7 @@ function App() {
             </a>
             <a
               href="mailto:hello@yanghe.moodex.cc"
-              aria-label="Email"
+              aria-label={copy.a11y.email}
               onClick={() => handleContactClick('email')}
               className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-600 transition-colors duration-200 hover:border-zinc-300 hover:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
             >
@@ -495,7 +504,7 @@ function App() {
                 <path d="M4 6.75A1.75 1.75 0 0 1 5.75 5h12.5A1.75 1.75 0 0 1 20 6.75v10.5A1.75 1.75 0 0 1 18.25 19H5.75A1.75 1.75 0 0 1 4 17.25V6.75Z" />
                 <path d="m5.5 7.5 6.5 5 6.5-5" />
               </svg>
-              <span className="sr-only">Email</span>
+              <span className="sr-only">{copy.a11y.email}</span>
             </a>
           </div>
           </div>
@@ -505,7 +514,7 @@ function App() {
       <button
         type="button"
         onClick={scrollToTop}
-        aria-label="Back to top"
+        aria-label={copy.a11y.backToTop}
         className={`fixed bottom-6 right-6 z-50 inline-flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-600 shadow-lg transition-all duration-300 hover:border-zinc-300 hover:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${showBackTop ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0'}`}
       >
         <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-none stroke-current stroke-[2]">

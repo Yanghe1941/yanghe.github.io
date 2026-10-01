@@ -18,7 +18,7 @@ export const projects = [
       zh: '一款用于管理真实资产、留存物品故事的应用。',
     },
     highlight: { en: 'Real-world assets × personal stories', zh: '真实资产 × 个人故事' },
-    preview: '/myvault-preview.png',
+    preview: '/myvault-preview.webp',
     href: 'https://myvault.moodex.cc',
   },
   {
@@ -132,6 +132,7 @@ export const experiences = [
 export const navItems = [
   { href: '#about', key: 'about' },
   { href: '#projects', key: 'projects' },
+  { href: '#writing', key: 'writing' },
   { href: '#experience', key: 'experience' },
   { href: '#contact', key: 'contact' },
 ];
@@ -143,6 +144,7 @@ export const siteCopy = {
     nav: {
       about: 'About',
       projects: 'Projects',
+      writing: 'Writing',
       experience: 'Experience',
       contact: 'Contact',
     },
@@ -178,6 +180,16 @@ export const siteCopy = {
     footer: '© {year} Yanghe. All rights reserved.',
     languageToggle: '中文',
     languageToggleLabel: 'Switch to Chinese',
+    a11y: {
+      skipToContent: 'Skip to content',
+      openMenu: 'Open menu',
+      closeMenu: 'Close menu',
+      primaryNav: 'Primary',
+      mobileNav: 'Mobile',
+      backToTop: 'Back to top',
+      email: 'Email',
+      appPreview: '{title} app preview',
+    },
   },
   zh: {
     title: '杨鹤 | Portfolio',
@@ -185,6 +197,7 @@ export const siteCopy = {
     nav: {
       about: '关于',
       projects: '项目',
+      writing: '写作',
       experience: '经历',
       contact: '联系方式',
     },
@@ -217,8 +230,18 @@ export const siteCopy = {
     contactTitle: '有产品想法、故事或合作想聊？',
     contactBody: '欢迎交流产品、AI、品牌与海外生活相关的话题。',
     contactButton: '邮件联系杨鹤',
-    footer: '© {year} Yanghe. All rights reserved.',
+    footer: '© {year} 杨鹤 版权所有',
     languageToggle: 'EN',
     languageToggleLabel: '切换到英文',
+    a11y: {
+      skipToContent: '跳到正文',
+      openMenu: '打开菜单',
+      closeMenu: '关闭菜单',
+      primaryNav: '主导航',
+      mobileNav: '移动端导航',
+      backToTop: '回到顶部',
+      email: '邮箱',
+      appPreview: '{title} 应用预览',
+    },
   },
 };
